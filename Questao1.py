@@ -6,20 +6,31 @@ def printMatrix(matrix, n):
         print(matrix[i])
 
 def floydAlgorithm(graph):
-    # print(graph.M)
-    Dgraph=[None]*(graph.n + 1)
-    Rgraph=[None]*(graph.n + 1)
-    for i in range (0, graph.n+1):
-        Dgraph[i]=[666]*(graph.n + 1)
-        Rgraph[i]=[0]*(graph.n + 1)
-    for i in range (0, graph.n+1):
-        for j in range (0, graph.n+1):
+    n=graph.n
+    D=[None]*(n + 1)
+    R=[None]*(n + 1)
+    for i in range (0, n+1):
+        D[i]=[666]*(n + 1)
+        R[i]=[0]*(n + 1)
+    for i in range (0, n+1):
+        for j in range (0, n+1):
             if graph.M[i][j] != 0:
-                Dgraph[i][j]=graph.M[i][j]
+                D[i][j]=graph.M[i][j]
             if graph.M[i][j] != 0:
-                Rgraph[i][j]=j
-    printMatrix(Dgraph, graph.n+1) #print de teste
-    printMatrix(Rgraph, graph.n+1) #print de teste
+                R[i][j]=j
+    print("print matriz declarada")
+    printMatrix(D, n+1) #print de teste
+    printMatrix(R, n+1) #print de teste
+    for k in range(1, n+1):
+        for i in range(1, n+1):
+            for j in range(1, n+1):
+                if D[i][k]+D[k][j]<D[i][j]:
+                    D[i][j]=D[i][k]+D[k][j]
+                    R[i][j]=R[i][k]
+    print("print matriz final")
+    printMatrix(D, n+1) #print de teste
+    printMatrix(R, n+1) #print de teste
+    return D, R
 
 if __name__== "__main__":
     input_graph=pd.read_fwf('graph1.txt', header=None)
@@ -39,6 +50,7 @@ if __name__== "__main__":
     graph=GMatrix(nodesN, directed=True)
     for i in range (0, 22):
         graph.addEdge(initialNode[i], finalNode[i], costNode[i])
+    print("print matriz lida")
     graph.print_matrix() #print de teste
 
     floydAlgorithm(graph)
