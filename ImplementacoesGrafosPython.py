@@ -129,14 +129,14 @@ class GraphAdjMatrix(GraphBase): #classe geral para controle de 1 grafo por matr
     for i in range(0, self.n+1):
       self.M[i] = [0]*(self.n + 1) #cria-se um loop para preencher cada uma com "zeros"
 
-  def addEdge(self, v: int, w: int): #metodo para adicionar aresta, recebe os vértices que vao ser ligados (esperado que sejam inteiros)
-    self.M[v][w] = 1 #utiliza-os como coordenadas para, na matriz de representação, adicionar 1 (considerando como peso 1) -> funciona para direcionados
+  def addEdge(self, v: int, w: int, weigth: float): #metodo para adicionar aresta, recebe os vértices que vao ser ligados (esperado que sejam inteiros)
+    self.M[v][w] = weigth #utiliza-os como coordenadas para, na matriz de representação, adicionar 1 (considerando como peso 1) -> funciona para direcionados
     #funciona para direcionados pois segue à risca a ordem (v,w) implicando que não necessariamente existe (w,v)
       #acredito que se fosse verdade também, teria que chamar novamente o metodo para regsitrar (w,v)
     #se fosse com peso, precisaria de outro parâmetro recebendo o peso
     #caso seja não direcionado, significa que tanto (v,w) quanto (w,v) devem ser adicionados simultaneamente
     if not self.directed: #se not false=true (no caso, confirmando que é não direcionada):
-      self.M[w][v] = 1 #aplica-se a aresta no par inverso (w,v) também
+      self.M[w][v] = weigth #aplica-se a aresta no par inverso (w,v) também
     self.m += 1 #conta-se mais 1 no numero de arestas totais (já que ela não existia antes)
     #independente se for direcionada ou não (pois no não direcionada (v,w)=(w,v)=1)
 
@@ -177,3 +177,8 @@ class GraphAdjMatrix(GraphBase): #classe geral para controle de 1 grafo por matr
 
       w += 1 #adiciona 1 na variável temporária para garantir que sejam checadas os outros vértices (não entre num loop e cague o objeto todo)
 #OBS importante: No estudo de grafos as matrizes de adjacencias são contadas de 1 para frente (geralmete não se utiliza zero para um vértice), portanto a matriz criada tem n+1 índices para que o índice 0 não seja usado (por isso w=1)
+  def print_matrix(self): #método que eu fiz para fazer o print da matriz
+    for i in range(0, self.n+1): #intervalo 0 ate n+1 para equilibrar com a declaração da matriz
+    #assim o print tem o tamanho n+1 X n+1, para ser mais facil de manipular
+      print(self.M[i]) #printar o conteudo de dacada lista menor (linhas)
+    #assim a manipulação da matriz tem que ser (v+1, w+1), além de desconsiderar a primeira coluna e linha para a interpretação correta (de 1 até N)
