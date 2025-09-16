@@ -10,7 +10,7 @@ def floydAlgorithm(graph):
     D=[None]*(n + 1)
     R=[None]*(n + 1)
     for i in range (0, n+1):
-        D[i]=[666]*(n + 1)
+        D[i]=[1000]*(n + 1)
         R[i]=[0]*(n + 1)
     for i in range (1, n+1):
         for j in range (1, n+1):
