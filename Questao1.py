@@ -12,10 +12,12 @@ def floydAlgorithm(graph):
     for i in range (0, n+1):
         D[i]=[666]*(n + 1)
         R[i]=[0]*(n + 1)
-    for i in range (0, n+1):
-        for j in range (0, n+1):
+    for i in range (1, n+1):
+        for j in range (1, n+1):
             if graph.M[i][j] != 0:
                 D[i][j]=graph.M[i][j]
+            elif i==j:
+                D[i][j]=0
             if graph.M[i][j] != 0:
                 R[i][j]=j
     print("print matriz declarada")
@@ -53,4 +55,4 @@ if __name__== "__main__":
     print("print matriz lida")
     graph.print_matrix() #print de teste
 
-    floydAlgorithm(graph)
+    D, R = floydAlgorithm(graph)
