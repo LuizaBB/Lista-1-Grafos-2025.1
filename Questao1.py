@@ -5,6 +5,12 @@ def printMatrix(matrix, n):
     for i in range(0, n):
         print(matrix[i])
 
+def sumRow(row):
+    result=0
+    for i in range(0, len(row)):
+        result+=row[i]
+    return result
+
 def floydAlgorithm(graph):
     n=graph.n
     D=[None]*(n + 1)
@@ -41,18 +47,26 @@ if __name__== "__main__":
     nodesN=input_graph.iloc[0,0]
     edgesM=input_graph.iloc[0,1]
     # print(nodesN, edgesM) #print de teste
-    initialNode=input_graph.iloc[1:23, 0].to_list()
-    finalNode=input_graph.iloc[1:23, 1].to_list()
-    costNode=input_graph.iloc[1:23, 2].astype(int).to_list()
+    initialNode=input_graph.iloc[1:edgesM+1, 0].to_list()
+    finalNode=input_graph.iloc[1:edgesM+1, 1].to_list()
+    costNode=input_graph.iloc[1:edgesM+1, 2].astype(int).to_list()
 
     # print(initialNode, len(initialNode)) #print de teste
     # print(finalNode, len(finalNode)) #print de teste
     # print(costNode, len(costNode)) #print de teste
 
     graph=GMatrix(nodesN, directed=True)
-    for i in range (0, 22):
+    for i in range (0, edgesM):
         graph.addEdge(initialNode[i], finalNode[i], costNode[i])
     print("print matriz lida")
     graph.print_matrix() #print de teste
 
     D, R = floydAlgorithm(graph)
+
+    nodeSum=[]
+    for i in range(1, graph.n+1):
+        nodeSum.append(sumRow(D[i]))
+    print(nodeSum) #print de teste
+    result= min(nodeSum)
+    print(result) #print de teste
+    print(nodeSum.index(min(nodeSum))+1)
