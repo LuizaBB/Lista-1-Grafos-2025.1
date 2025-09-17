@@ -1,9 +1,10 @@
 import pandas as pd
 from ImplementacoesGrafosPython import GraphAdjMatrix as GMatrix
 
-def printMatrix(matrix, n):
-    for i in range(1, n+1):
-        print(matrix[i][1: n+1])
+def printMatrix(matrix):
+    n=len(matrix[0]) #considerando matriz quadrada
+    for i in range(1, n):
+        print(matrix[i][1: n])
 
 def sumRow(row):
     result=0
@@ -27,8 +28,8 @@ def floydAlgorithm(graph):
             if graph.M[i][j] != 0:
                 R[i][j]=j
     print("print matriz declarada")
-    printMatrix(D, n) #print de teste
-    printMatrix(R, n) #print de teste
+    printMatrix(D) #print de teste
+    printMatrix(R) #print de teste
     for k in range(1, n+1):
         for i in range(1, n+1):
             for j in range(1, n+1):
@@ -36,8 +37,8 @@ def floydAlgorithm(graph):
                     D[i][j]=D[i][k]+D[k][j]
                     R[i][j]=R[i][k]
     print("print matriz final")
-    printMatrix(D, n) #print de teste
-    printMatrix(R, n) #print de teste
+    printMatrix(D) #print de teste
+    printMatrix(R) #print de teste
     return D, R
 
 if __name__== "__main__":
@@ -74,5 +75,5 @@ if __name__== "__main__":
     print(centralNode_distanceList) #print de teste
     mostDistantNode=centralNode_distanceList.index(max(centralNode_distanceList))+2 #vértice mais longe do central
     print(mostDistantNode) #print de teste
-
+    
     
