@@ -67,6 +67,4 @@ if __name__== "__main__":
     for i in range(1, graph.n+1):
         nodeSum.append(sumRow(D[i]))
     print(nodeSum) #print de teste
-    result= min(nodeSum)
-    print(result) #print de teste
-    print(nodeSum.index(min(nodeSum))+1)
+    centralNode=nodeSum.index(min(nodeSum))+1
