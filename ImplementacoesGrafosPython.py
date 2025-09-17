@@ -178,7 +178,7 @@ class GraphAdjMatrix(GraphBase): #classe geral para controle de 1 grafo por matr
       w += 1 #adiciona 1 na variável temporária para garantir que sejam checadas os outros vértices (não entre num loop e cague o objeto todo)
 #OBS importante: No estudo de grafos as matrizes de adjacencias são contadas de 1 para frente (geralmete não se utiliza zero para um vértice), portanto a matriz criada tem n+1 índices para que o índice 0 não seja usado (por isso w=1)
   def print_matrix(self): #método que eu fiz para fazer o print da matriz
-    for i in range(0, self.n+1): #intervalo 0 ate n+1 para equilibrar com a declaração da matriz
+    for i in range(1, self.n+1): #intervalo 0 ate n+1 para equilibrar com a declaração da matriz
     #assim o print tem o tamanho n+1 X n+1, para ser mais facil de manipular
-      print(self.M[i]) #printar o conteudo de dacada lista menor (linhas)
+      print(self.M[i][1: self.n+1]) #printar o conteudo de dacada lista menor (linhas)
     #assim a manipulação da matriz tem que ser (v+1, w+1), além de desconsiderar a primeira coluna e linha para a interpretação correta (de 1 até N)
