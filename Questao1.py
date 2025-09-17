@@ -70,5 +70,7 @@ if __name__== "__main__":
 
     centralNode=nodeSum.index(min(nodeSum))+1 #nó central
     print(centralNode) #print de teste
-    centralNode_distanceList=D[centralNode]
+    centralNode_distanceList=D[centralNode][1: nodesN] #vetor de distâncias em relação ao central
     print(centralNode_distanceList) #print de teste
+    mostDistantNode=centralNode_distanceList.index(max(centralNode_distanceList))+2 #vértice mais longe do central
+    print(mostDistantNode) #print de teste
