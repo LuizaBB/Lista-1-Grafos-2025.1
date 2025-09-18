@@ -75,5 +75,11 @@ if __name__== "__main__":
     print(centralNode_distanceList) #print de teste
     mostDistantNode=centralNode_distanceList.index(max(centralNode_distanceList))+2 #vértice mais longe do central
     print(mostDistantNode) #print de teste
+    # candidatesMatrix=[None]*(nodesN+1)
+    # for i in range(0, nodesN+1):
+    #     candidatesMatrix[i]=D[i]
+    # printMatrix(candidatesMatrix)
     
-    
+    #respostas:
+    print(f"Pela matriz dada:\n   Nó escolhido como central: {centralNode}\n   Distâncias em relação ao nó central: {centralNode_distanceList}\n   Vértice mais distante do central: {mostDistantNode}\n   Matriz de backtracking: ")
+    printMatrix(R)
