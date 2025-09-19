@@ -177,13 +177,6 @@ class GraphAdjMatrix(GraphBase): #classe geral para controle de 1 grafo por matr
 
       w += 1 #adiciona 1 na variável temporária para garantir que sejam checadas os outros vértices (não entre num loop e cague o objeto todo)
 #OBS importante: No estudo de grafos as matrizes de adjacencias são contadas de 1 para frente (geralmete não se utiliza zero para um vértice), portanto a matriz criada tem n+1 índices para que o índice 0 não seja usado (por isso w=1)
-  def printMatrix(self, node0=False): #fmétodo criado para impressão de matriz, considerando a existencia de vértice 0 ou não
-    #recebe a propria matriz e um booleano indicando se existe vértice 0 ou não (por padrão é False, ou seja não tem)
-    if not node0==True: #se realmente não tem (vertices começam por 1), o intervalo a ser impresso é 1 até N+1
-      for i in range(1, self.n+1): #intervalo 0 ate n+1 para equilibrar com a declaração da matriz
-    #assim o print tem o tamanho n+1 X n+1, para ser mais facil de manipular
-        print(self.M[i][1: self.n+1]) #printar o conteudo de dacada lista menor (linhas)
-    #assim a manipulação da matriz tem que ser (v+1, w+1), além de desconsiderar a primeira coluna e linha para a interpretação correta (de 1 até N)
-    else: #se tiver vértice 0, o intervalo de impressão é 0 até N
-      for i in range(0, self.n):
-        print(self.M[i][0: self.n])
+  def printMatrix(self, k): #método criado para impressão de matriz, considerando a existencia de vértice 0 ou não
+    for i in range(k, self.n+k):
+      print(self.M[i][k: self.n+k])
