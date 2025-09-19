@@ -27,18 +27,18 @@ def floydAlgorithm(graph):
                 D[i][j]=0
             if graph.M[i][j] != 0:
                 R[i][j]=j
-    # print("print matriz declarada")
-    # printMatrix(D) #print de teste
-    # printMatrix(R) #print de teste
+    print("print matriz declarada")
+    printMatrix(D) #print de teste
+    printMatrix(R) #print de teste
     for k in range(1, n+1):
         for i in range(1, n+1):
             for j in range(1, n+1):
                 if D[i][k]+D[k][j]<D[i][j]:
                     D[i][j]=D[i][k]+D[k][j]
                     R[i][j]=R[i][k]
-    # print("print matriz final")
-    # printMatrix(D) #print de teste
-    # printMatrix(R) #print de teste
+    print("print matriz final")
+    printMatrix(D) #print de teste
+    printMatrix(R) #print de teste
     return D, R
 
 if __name__== "__main__":
@@ -56,24 +56,25 @@ if __name__== "__main__":
     # print(finalNode, len(finalNode)) #print de teste
     # print(costNode, len(costNode)) #print de teste
 
-    graph=GMatrix(nodesN, directed=True)
+    graph=GMatrix(nodesN)
     for i in range (0, edgesM):
         graph.addEdge(initialNode[i], finalNode[i], costNode[i])
     print("print matriz lida")
-    # graph.printMatrix() #print de teste
+    graph.printMatrix() #print de teste
 
     D, R = floydAlgorithm(graph)
 
     nodeSum=[]
     for i in range(1, graph.n+1):
         nodeSum.append(sumRow(D[i]))
-    # print(nodeSum) #print de teste
+    print("Lista de soma das distancias para cada vértice")
+    print(nodeSum) #print de teste
 
     centralNode=nodeSum.index(min(nodeSum))+1 #nó central
     # print(centralNode) #print de teste
-    centralNode_distanceList=D[centralNode][1: nodesN] #vetor de distâncias em relação ao central
+    centralNode_distanceList=D[centralNode][1: nodesN+1] #vetor de distâncias em relação ao central
     # print(centralNode_distanceList) #print de teste
-    mostDistantNode=centralNode_distanceList.index(max(centralNode_distanceList))+2 #vértice mais longe do central
+    mostDistantNode=centralNode_distanceList.index(max(centralNode_distanceList))+1 #vértice mais longe do central
     # print(mostDistantNode) #print de teste
     
     #respostas:
