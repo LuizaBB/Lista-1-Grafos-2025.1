@@ -59,8 +59,8 @@ if __name__== "__main__":
     graph=GMatrix(nodesN, directed=True)
     for i in range (0, edgesM):
         graph.addEdge(initialNode[i], finalNode[i], costNode[i])
-    # print("print matriz lida")
-    # graph.print_matrix() #print de teste
+    print("print matriz lida")
+    # graph.printMatrix() #print de teste
 
     D, R = floydAlgorithm(graph)
 
