@@ -9,7 +9,7 @@ if __name__== "__main__":
             final_Line=line.strip("\n").split("\t")
             Input.append(final_Line)
     inputGraph=pd.DataFrame(Input)
-    print(inputGraph)
+    print(inputGraph) #print de teste
 
     nodesN=int(inputGraph.iloc[0,0])
     edgesM=int(inputGraph.iloc[0,1])
@@ -21,3 +21,11 @@ if __name__== "__main__":
     print(initialNode, len(initialNode)) #print de teste
     print(finalNode, len(finalNode)) #print de teste
     print(costNode, len(costNode)) #print de teste
+
+    graph=GMatrix(nodesN, directed=True)
+    for i in range (0, edgesM):
+        graph.addEdge(initialNode[i], finalNode[i], costNode[i])
+    k=0 #considerando o vértice de referencia = 0
+    print("Grafo lido")
+    graph.printMatrix(k) #print de teste 
+
