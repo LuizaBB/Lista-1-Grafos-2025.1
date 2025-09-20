@@ -1,6 +1,30 @@
 import pandas as pd
 from ImplementacoesGrafosPython import GraphAdjMatrix as GMatrix
 
+def Bellmann_FordAlgorithm(graph, nodeReference):
+    n=graph.n
+    D=[]
+    anterior=[]
+    for i in range(0, n):
+        anterior.append(0)
+        if i==nodeReference:
+            D.append(0)
+        else:
+            D.append(100)
+    print(D) #print de teste
+    print(anterior) #print de teste
+    edges={}
+    print(edges)
+    for j in range(0, n):
+        for i in range(0, n):
+            if graph.M[j][i] != 0:
+                edgeElement={(j, i): graph.M[j][i]}
+                edges.update(edgeElement)
+    print(edges)
+    print("agora com o que eu implementei")
+    print(graph.getEdges())
+    for edge in graph.getEdges():
+        print(edge)
 if __name__== "__main__":
 
     Input=[]
@@ -28,4 +52,6 @@ if __name__== "__main__":
     k=0 #considerando o vértice de referencia = 0
     print("Grafo lido")
     graph.printMatrix(k) #print de teste 
+
+    D = Bellmann_FordAlgorithm(graph, k)
 
