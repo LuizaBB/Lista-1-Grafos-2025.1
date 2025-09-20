@@ -88,5 +88,5 @@ if __name__== "__main__":
     # print(mostDistantNode) #print de teste
     
     #respostas:
-    print(f"Pela matriz dada:\n   Nó escolhido como central: {centralNode}\n   Distâncias em relação ao nó central: {centralNode_distanceList}\n   Vértice mais distante do central: {mostDistantNode}\n   Matriz de backtracking: ")
-    printMatrix(R, k)
+    print(f"Pela matriz dada:\n   Nó escolhido como central: {centralNode}\n   Distâncias em relação ao nó central: {centralNode_distanceList}\n   Vértice mais distante do central: {mostDistantNode}\n   Matriz com nós cadidatos e distâncias mínimas (Matriz de distâncias): ")
+    printMatrix(D, k)
