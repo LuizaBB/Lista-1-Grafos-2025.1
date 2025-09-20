@@ -180,3 +180,12 @@ class GraphAdjMatrix(GraphBase): #classe geral para controle de 1 grafo por matr
   def printMatrix(self, k): #método criado para impressão de matriz, considerando a existencia de vértice 0 ou não
     for i in range(k, self.n+k):
       print(self.M[i][k: self.n+k])
+
+  def getEdges(self):
+    edges={}
+    for j in range(0, self.n):
+        for i in range(0, self.n):
+            if self.M[j][i] != 0:
+                edgeElement={(j, i): self.M[j][i]}
+                edges.update(edgeElement)
+    return edges
