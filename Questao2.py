@@ -13,18 +13,14 @@ def Bellmann_FordAlgorithm(graph, nodeReference):
             D.append(100)
     print(D) #print de teste
     print(anterior) #print de teste
-    edges={}
-    print(edges)
+    Edges={}
     for j in range(0, n):
         for i in range(0, n):
             if graph.M[j][i] != 0:
                 edgeElement={(j, i): graph.M[j][i]}
-                edges.update(edgeElement)
-    print(edges)
-    print("agora com o que eu implementei")
-    print(graph.getEdges())
-    for edge in graph.getEdges():
-        print(edge)
+                Edges.update(edgeElement)
+    print(Edges) #print de teste
+    
 if __name__== "__main__":
 
     Input=[]
