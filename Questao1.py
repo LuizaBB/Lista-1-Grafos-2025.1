@@ -43,14 +43,20 @@ def floydAlgorithm(graph, intervalRef):
     return D, R
 
 if __name__== "__main__":
-    input_graph=pd.read_fwf('graph1.txt', header=None)
 
+    Input=[]
+    with open("graph1.txt", 'r') as input:
+        for line in input:
+            final_Line=line.strip("\n").split("\t")
+            Input.append(final_Line)
+    input_graph=pd.DataFrame(Input)
     # print(input_graph) #print de teste
-    nodesN=input_graph.iloc[0,0]
-    edgesM=input_graph.iloc[0,1]
+
+    nodesN=int(input_graph.iloc[0,0])
+    edgesM=int(input_graph.iloc[0,1])
     # print(nodesN, edgesM) #print de teste
-    initialNode=input_graph.iloc[1:edgesM+1, 0].to_list()
-    finalNode=input_graph.iloc[1:edgesM+1, 1].to_list()
+    initialNode=input_graph.iloc[1:edgesM+1, 0].astype(int).to_list()
+    finalNode=input_graph.iloc[1:edgesM+1, 1].astype(int).to_list()
     costNode=input_graph.iloc[1:edgesM+1, 2].astype(int).to_list()
     k=min(min(initialNode), min(finalNode)) #primeiro nó (considerando que os vértices seguem uma ordem crescente) #referência de vértice e intervalo
 
