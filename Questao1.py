@@ -50,7 +50,7 @@ if __name__== "__main__":
             final_Line=line.strip("\n").split("\t")
             Input.append(final_Line)
     input_graph=pd.DataFrame(Input)
-    # print(input_graph) #print de teste
+    print(input_graph) #print de teste
 
     nodesN=int(input_graph.iloc[0,0])
     edgesM=int(input_graph.iloc[0,1])
@@ -68,7 +68,7 @@ if __name__== "__main__":
     graph=GMatrix(nodesN)
     for i in range (0, edgesM):
         graph.addEdge(initialNode[i], finalNode[i], costNode[i])
-    print("print matriz lida")
+    # print("print matriz lida")
     # graph.printMatrix(k) #print de teste
 
     
