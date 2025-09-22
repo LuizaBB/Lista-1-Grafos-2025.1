@@ -57,3 +57,22 @@ if __name__== "__main__":
 
     D, anterior = Bellmann_FordAlgorithm(graph, k)
 
+    ShortWay06=[6]
+    i=6
+    while True:   
+        ShortWay06.append(anterior[i])
+        if anterior[i]==0: 
+            break
+        i=anterior[i]
+    print(ShortWay06) #print de teste
+    stringShortWay06=""
+    for i in range(len(ShortWay06), 0, -1):
+        stringShortWay06+=str(ShortWay06[i-1])
+        if i!=1:
+            stringShortWay06+="->"
+    print("Print da string organizada de menor caminho", stringShortWay06)
+    #respostas
+    print(f"Custo do caminho mínimo do vértice 0 a 6: {D[6]}")
+    print(f"Caminho mínimo realizado do vértice 0 até 6:")
+
+
