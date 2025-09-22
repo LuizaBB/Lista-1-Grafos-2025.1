@@ -24,7 +24,7 @@ def floydAlgorithm(graph, IR):
             if graph.M[i][j] != 0:
                 D[i][j]=graph.M[i][j]
                 R[i][j]=j
-            elif i==j:
+            if i==j:
                 D[i][j]=0
     for k in range(IR, n+IR):
         for i in range(IR, n+IR):
