@@ -11,20 +11,20 @@ def Bellmann_FordAlgorithm(graph, nodeReference):
             D.append(0)
         else:
             D.append(100)
-    print("Print dos vetores iniciais", D, anterior) #print de teste
+    # print("Print dos vetores iniciais", D, anterior) #print de teste
     Edges={}
     for j in range(0, n):
         for i in range(0, n):
             if graph.M[j][i] != 0:
                 edgeElement={(j, i): graph.M[j][i]}
                 Edges.update(edgeElement)
-    print("Print do dicionário de arestas", Edges) #print de teste
+    # print("Print do dicionário de arestas", Edges) #print de teste
     for edge in Edges:
         j, i=edge
         if D[i] > D[j] + Edges[edge]:
             D[i] = D[j] + Edges[edge]
             anterior[i]=j
-    print("Print dos vetores finais", D, anterior) #print de teste
+    # print("Print dos vetores finais", D, anterior) #print de teste
     return D, anterior
     
 if __name__== "__main__":
@@ -35,25 +35,25 @@ if __name__== "__main__":
             final_Line=line.strip("\n").split("\t")
             Input.append(final_Line)
     inputGraph=pd.DataFrame(Input)
-    print(inputGraph) #print de teste
+    # print(inputGraph) #print de teste
 
     nodesN=int(inputGraph.iloc[0,0])
     edgesM=int(inputGraph.iloc[0,1])
-    print(f"N° de nós e vértices: {nodesN}, {edgesM}") #print de teste
+    # print(f"N° de nós e vértices: {nodesN}, {edgesM}") #print de teste
     initialNode=inputGraph.iloc[1:edgesM+1, 0].astype(int).to_list()
     finalNode=inputGraph.iloc[1:edgesM+1, 1].astype(int).to_list()
     costNode=inputGraph.iloc[1:edgesM+1, 2].astype(int).to_list()
 
-    print(initialNode, len(initialNode)) #print de teste
-    print(finalNode, len(finalNode)) #print de teste
-    print(costNode, len(costNode)) #print de teste
+    # print(initialNode, len(initialNode)) #print de teste
+    # print(finalNode, len(finalNode)) #print de teste
+    # print(costNode, len(costNode)) #print de teste
 
     graph=GMatrix(nodesN, directed=True)
     for i in range (0, edgesM):
         graph.addEdge(initialNode[i], finalNode[i], costNode[i])
-    k=0 #considerando o vértice de referencia = 0
-    print("Grafo lido")
-    graph.printMatrix(k) #print de teste 
+    k=0     #considerando o vértice de referencia = 0
+    # print("Grafo lido")
+    # graph.printMatrix(k) #print de teste 
 
     D, anterior = Bellmann_FordAlgorithm(graph, k)
 
@@ -64,16 +64,17 @@ if __name__== "__main__":
         if anterior[i]==0: 
             break
         i=anterior[i]
-    print(ShortWay06) #print de teste
+    # print(ShortWay06) #print de teste
     stringShortWay06=""
     for i in range(len(ShortWay06), 0, -1):
         stringShortWay06+=str(ShortWay06[i-1])
         if i!=1:
             stringShortWay06+="->"
-    print("Print da string organizada de menor caminho", stringShortWay06) #print de teste
+    # print("Print da string organizada de menor caminho", stringShortWay06) #print de teste
 
     #respostas
-    print(f"Custo do caminho mínimo do vértice 0 a 6: {D[6]}")
-    print(f"Caminho mínimo realizado do vértice 0 até 6: {stringShortWay06}")
+    print("Baseado na matriz dada:")
+    print(f"    Custo do caminho mínimo do vértice 0 a 6: {D[6]}")
+    print(f"    Caminho mínimo realizado do vértice 0 até 6: {stringShortWay06}")
 
 
