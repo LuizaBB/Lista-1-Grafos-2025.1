@@ -11,15 +11,21 @@ def Bellmann_FordAlgorithm(graph, nodeReference):
             D.append(0)
         else:
             D.append(100)
-    print(D) #print de teste
-    print(anterior) #print de teste
+    print("Print dos vetores iniciais", D, anterior) #print de teste
     Edges={}
     for j in range(0, n):
         for i in range(0, n):
             if graph.M[j][i] != 0:
                 edgeElement={(j, i): graph.M[j][i]}
                 Edges.update(edgeElement)
-    print(Edges) #print de teste
+    print("Print do dicionário de arestas", Edges) #print de teste
+    for edge in Edges:
+        j, i=edge
+        if D[i] > D[j] + Edges[edge]:
+            D[i] = D[j] + Edges[edge]
+            anterior[i]=j
+    print("Print dos vetores finais", D, anterior) #print de teste
+    return D, anterior
     
 if __name__== "__main__":
 
@@ -49,5 +55,5 @@ if __name__== "__main__":
     print("Grafo lido")
     graph.printMatrix(k) #print de teste 
 
-    D = Bellmann_FordAlgorithm(graph, k)
+    D, anterior = Bellmann_FordAlgorithm(graph, k)
 
