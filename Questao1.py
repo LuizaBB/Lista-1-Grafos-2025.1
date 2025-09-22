@@ -19,8 +19,8 @@ def floydAlgorithm(graph, intervalRef):
     for i in range (0, n+1):
         D[i]=[1000]*(n + 1)
         R[i]=[0]*(n + 1)
-    for i in range (1, n+1):
-        for j in range (1, n+1):
+    for i in range (intervalRef, n+intervalRef):
+        for j in range (intervalRef, n+intervalRef):
             if graph.M[i][j] != 0:
                 D[i][j]=graph.M[i][j]
             elif i==j:
