@@ -15,9 +15,15 @@ Nas linhas 22 à 28 tem o tratamento inicial dessas matrizes antes do algoritmo 
 
 Entre a linha 29 a 35 há o processamento feito pelo algoritmo em si: Inicia com a linha de código ``for k in range(IR, n+IR):``[2] que cria um look com tamanho das matrizes D e R para a variável *k* que representa o vértice de referência atual no algoritmo (à cada novo ciclo *k* representará cada vértice do grafo como referência). Dentro deste *loop* ainda se tem outros dois *loops* ``for i in range(IR, n+IR):``[3] e ``for j in range(IR, n+IR):``[3] de tamanho (IR, N+IR) com as variáveis *i* e *j* para (representando os vértices no formato de aresta *(i, j)*). Com eles é possível no grafo com base nos vértices e , quando a condição ``if D[i][k]+D[k][j]<D[i][j]:``[4] (Se a distância considerando *k* como vértice intermediário for menor que a distância atual de *i* para *j*) é atendida, a distância *(i, j)* na matriz D e o *backtracing* na R são atualizados com ``D[i][j]=D[i][k]+D[k][j]``[5] e ``R[i][j]=R[i][k]``[6], respectivamente. Após o *loop* principal ser encerrado (a análise de minimização ser feita considerando todas os vértices como referência) retorna a matriz D com as distâncias mínimas e matriz R com o caminho recursivo atualizadas.
 >As linhas do pseudocódigos relacionadas:
->>[1]: inicio <dados G = (V,E); matriz de valores V(G); matriz de roteamento R=[rij]; rij=j ; D=[dij]=V(G)
->>[2]: para k=1, ..., n fazer[ k é o vértice-base da iteração ]
->>[3]: para todo i, j= 1,.., n fazer
->>[4]: se dik + dkj < dij
->>[5]: dij = dik + dkj
->>[6]: rij = rik
+
+>[1]: inicio <dados G = (V,E); matriz de valores V(G); matriz de roteamento R=[rij]; rij=j ; D=[dij]=V(G)
+
+>[2]: para k=1, ..., n fazer[ k é o vértice-base da iteração ]
+
+>[3]: para todo i, j= 1,.., n fazer
+
+>[4]: se dik + dkj < dij
+
+>[5]: dij = dik + dkj
+
+>[6]: rij = rik
