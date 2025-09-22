@@ -70,9 +70,10 @@ if __name__== "__main__":
         stringShortWay06+=str(ShortWay06[i-1])
         if i!=1:
             stringShortWay06+="->"
-    print("Print da string organizada de menor caminho", stringShortWay06)
+    print("Print da string organizada de menor caminho", stringShortWay06) #print de teste
+
     #respostas
     print(f"Custo do caminho mínimo do vértice 0 a 6: {D[6]}")
-    print(f"Caminho mínimo realizado do vértice 0 até 6:")
+    print(f"Caminho mínimo realizado do vértice 0 até 6: {stringShortWay06}")
 
 
