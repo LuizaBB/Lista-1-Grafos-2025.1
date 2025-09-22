@@ -12,24 +12,24 @@ def sumRow(row):
         result+=row[i]
     return result
 
-def floydAlgorithm(graph, intervalRef):
+def floydAlgorithm(graph, IR):
     n=graph.n
     D=[None]*(n + 1)
     R=[None]*(n + 1)
     for i in range (0, n+1):
         D[i]=[1000]*(n + 1)
         R[i]=[0]*(n + 1)
-    for i in range (intervalRef, n+intervalRef):
-        for j in range (intervalRef, n+intervalRef):
+    for i in range (IR, n+IR):
+        for j in range (IR, n+IR):
             if graph.M[i][j] != 0:
                 D[i][j]=graph.M[i][j]
             elif i==j:
                 D[i][j]=0
             if graph.M[i][j] != 0:
                 R[i][j]=j
-    for k in range(intervalRef, n+intervalRef):
-        for i in range(intervalRef, n+intervalRef):
-            for j in range(intervalRef, n+intervalRef):
+    for k in range(IR, n+IR):
+        for i in range(IR, n+IR):
+            for j in range(IR, n+IR):
                 if D[i][k]+D[k][j]<D[i][j]:
                     D[i][j]=D[i][k]+D[k][j]
                     R[i][j]=R[i][k]
