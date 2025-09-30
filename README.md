@@ -27,3 +27,23 @@ Entre a linha 29 a 35 há o processamento feito pelo algoritmo em si: Inicia com
 >[5]: dij = dik + dkj
 
 >[6]: rij = rik
+
+## Questão 1: Otimizando caminhos por regeneração
+Considerando que a questão fornece um grafo **direcionado** contendo arestas positivas e negativas e requer um caminho mínimo sempre envolvendo os mesmos vértices (de 0 para 6), foi escolhido o algoritmo Bellmann-Ford para a resolução, visto que este algoritmo retorna vetores de distâncias mínimas e *backtracking* sempre em referência à um único vértice (característica que algoritmos como Floyd não possuem) e suporta arestas positivas e negativas (característica que algortimos como Djikstra não possuem).
+### Em relação à implementação
+A implimentação foi iniciada na linha 5 com a obtenção da quantidade de vértices existentes no grafo através o objeto criado para o mesmo (``n=graph.n``)[1], importante para a declaração futura dos vetores-resposta. Em seguida a declaração das variáveis (em formato de lista) que serão os resultados finais em ``D=[]``[1] e ``anterior=[]``[1] (que receberão as distâncias mínimas e *backtracking*, respectivamente) nas linhas 6 e 7 e o preenchimento dessas listas de acordo com os requerimentos do pseudocódigo (na lista D inteiro máximo para todos os índices exceto o de referência [1] com ``if i==nodeReference: D.append(0)``[1] e ``else: D.append(100)``[1], além do "anterior" totalmente preenchido por zeros [1] com ``anterior.append(0)``[1]) nas linhas 8 a 13. 
+
+Nas linhas 14 a 19 tem-se a formação da relação das arestas e seus pesos: Representada em dicionário la linguagem Python pois permite uma obtenção direta do custo de cada aresta por um sistema chave-valor (que facilita a varredura futura aplicada no algoritmo), declarada inicialmente vazia com ``Edges={}``[2], aos poucos completada por dois *loops* ``for j in range(0, n):``[2] e ``for i in range(0, n):``[2] que percorrem a matriz de adjacência verificando as arestas que não são definidas com 0 (``if graph.M[j][i] != 0:`` [2]) para identificar arestas existentes e, em caso positivo adicioná-las no dicionário com o formato {(vértice1, vértice2) : custo} com as linhas ``edgeElement={(j, i): graph.M[j][i]}``[2] e ``Edges.update(edgeElement)``[2]. Ao final deste processo o dicionário de arestas está pronto para ser utilizado na aplicação efetiva do algoritmo (este processo foi também implementado como um método dentro de GMatrix no arquivo "ImplementacoesGrafosPython", mas não utilizado por ser requerimento para uma tarefa muito específica, não sendo utilizada o suficiente para se tornar método).
+
+Na aplicação em si, concentrada nas linhas 20 à 25, é declarado um *loop* na linha ``for edge in Edges:``[2] para percorrer toda a relação de arestas, em seguida separar os vértices que a compõe com ``j, i=edge``[2] e aplicar na condição ``if D[i] > D[j] + Edges[edge]:``[2] que avalia se a adição da aresta analisa diminui o custo de "vértice1" à "vértice2" (como está tudo em relação à um único vértice, o svalores obtidos no vetor D avaliam de a distância do vértice1 até o vértice de referência diminui caso adicionado um caminho intermediário (vértice1, vértice2)). Em caso positivo, o vetor de distâncias tem seu valor mudado considerando essa nova distância mínima com ``D[i] = D[j] + Edges[edge]``[3], além da mudança no vetor "anterior" adicionando um novo *backtracking* com ``anterior[i]=j``[4].
+
+Com esse processo aplicado à todas as arestas, os vetores D e "anterior" declarados inicialmente são atualizados com todos os caminhos mínimos e "rotas" de volta em relação ao vértice escolhido (que, no caso da questão, sempre será 0) que são retornados na linha ``return D, anterior``, o que permite calcular a distância mínima e seu processo até qualquer vértice do grafo (no caso da questão, especificado como 6).
+>As linhas do pseudocódigos relacionadas:
+
+>[1]: d11 <-0; di1<- ∞ ∀ i ∈ V-{1}; anterior(i) <- 0 ∀ i
+
+>[2]: enquanto ∃ (j, i) ∈ A | d1i > d1j +vij fazer
+
+>[3]: d1i = d1j +vij
+
+>[4]:  anterior(i) <- j
