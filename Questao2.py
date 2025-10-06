@@ -63,5 +63,3 @@ if __name__== "__main__":
     print("Baseado na matriz dada:")
     print(f"    Custo do caminho mínimo do vértice 0 a 6: {D[6]}")
     print(f"    Caminho mínimo realizado do vértice 0 até 6: {stringShortWay06}")
-
-
